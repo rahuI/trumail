@@ -16,7 +16,7 @@ let request = require('request-promise');
  * isValidEmail - Uses trumail.io (which pings SMTP server for validation).
  *
  * @param  {String} email email address
- * @return {Boolean}       true if valid
+ * @return {Promise}       Boolean - true if valid
  */
 function isValidEmail(email) {
 
@@ -45,7 +45,7 @@ module.exports.isValidEmail = isValidEmail;
  * getEmailInfo - Get Details for a email like is it exists or not, host, deliverable etc. Uses trumail.io.
  *
  * @param  {String} email email address
- * @return {Object}       email details
+ * @return {Promise}       email details
  */
 function getEmailInfo(email) {
 
