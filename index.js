@@ -1,15 +1,31 @@
 'use strict';
 
+
+/**
+ * @author Rahul Yadav
+ */
+
+/**
+ * Direct dependency
+ * Module request is used for https request to trumail.io
+ */
 let request = require('request-promise');
 
-module.exports.isValidEmail = (email) => {
+
+/**
+ * isValidEmail - Uses trumail.io (which pings SMTP server for validation).
+ *
+ * @param  {String} email email address
+ * @return {Boolean}       true if valid
+ */
+function isValidEmail(email) {
 
 	let options = {
 		method: 'GET',
 		uri: 'https://trumail.io/json/' + email,
 		json: true
 	};
-	
+
 	return request(options)
 		.then(res => {
 			if(res){
@@ -22,7 +38,16 @@ module.exports.isValidEmail = (email) => {
 		});
 };
 
-module.exports.getEmailInfo = (email) => {
+module.exports.isValidEmail = isValidEmail;
+
+
+/**
+ * getEmailInfo - Get Details for a email like is it exists or not, host, deliverable etc. Uses trumail.io.
+ *
+ * @param  {String} email email address
+ * @return {Object}       email details
+ */
+function getEmailInfo(email) {
 
 	let options = {
 		method: 'GET',
@@ -38,3 +63,5 @@ module.exports.getEmailInfo = (email) => {
 			return err;
 		});
 };
+
+module.exports.getEmailInfo = getEmailInfo;
