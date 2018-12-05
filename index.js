@@ -22,7 +22,7 @@ function isValidEmail(email) {
 
 	let options = {
 		method: 'GET',
-		uri: 'https://trumail.io/json/' + email,
+		uri: `https://api.trumail.io/v2/lookups/json?email=${email}`,
 		json: true
 	};
 
